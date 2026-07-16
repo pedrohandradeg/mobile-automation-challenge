@@ -51,7 +51,7 @@ test_android_browserstack:
 generate_allure_report:
   stage: report
   image: node:20-bullseye
-  needs: ["test_android_browserstack"]
+  needs: ["install_dependencies", "test_android_browserstack"]
   script:
     - npm run allure:generate
   artifacts:
