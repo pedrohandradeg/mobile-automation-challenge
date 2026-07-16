@@ -28,6 +28,7 @@ test_android:
   image: node:20-bullseye
   needs: ["install_dependencies"]
   timeout: 45m
+  before_script:
     - apt-get update -qq
     - apt-get install -y -qq openjdk-17-jdk-headless unzip wget libpulse0 libglu1-mesa qemu-kvm > /dev/null
     - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64

@@ -66,6 +66,7 @@ export const config = {
         'appium:uiautomator2ServerInstallTimeout': 120000,
         'appium:adbExecTimeout': 120000,
         'appium:androidInstallTimeout': 180000,
+        'appium:ignoreHiddenApiPolicyError': true,
     }],
 
     //
