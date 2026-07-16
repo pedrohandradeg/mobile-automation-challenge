@@ -63,6 +63,8 @@ export const config = {
         'appium:app': path.join(process.cwd(), 'apps', 'android.apk'),
         'appium:noReset': false,
         'appium:autoGrantPermissions': true,
+        'appium:uiautomator2ServerInstallTimeout': 120000,
+        'appium:adbExecTimeout': 120000, 
     }],
 
     //
@@ -103,7 +105,7 @@ export const config = {
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 300000,
     //
     // Default request retries count
     connectionRetryCount: 3,
