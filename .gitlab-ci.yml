@@ -27,8 +27,7 @@ test_android:
   stage: test
   image: node:20-bullseye
   needs: ["install_dependencies"]
-  timeout: 30m
-  before_script:
+  timeout: 45m
     - apt-get update -qq
     - apt-get install -y -qq openjdk-17-jdk-headless unzip wget libpulse0 libglu1-mesa qemu-kvm > /dev/null
     - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -53,8 +52,14 @@ test_android:
         echo "Aguardando emulador finalizar o boot..."
         sleep 5
       done
-    - echo "Boot detectado, aguardando servicos internos estabilizarem..."
-    - sleep 20
+    - echo "Boot completo detectado, aguardando animacao de boot finalizar..."
+    - |
+      until [ "$(adb shell getprop init.svc.bootanim | tr -d '\r')" = "stopped" ]; do
+        echo "Aguardando animacao de boot finalizar..."
+        sleep 5
+      done
+    - echo "Aguardando servicos internos estabilizarem (margem extra)..."
+    - sleep 45
     - echo "Emulador pronto"
     - npx appium driver install uiautomator2
   script:
