@@ -42,7 +42,8 @@ test_android:
     - yes | sdkmanager --licenses > /dev/null || true
     - sdkmanager --install "platform-tools" "platforms;android-33" "system-images;android-33;google_apis;x86_64" "emulator" > /dev/null
     - echo "no" | avdmanager create avd -n test_avd -k "system-images;android-33;google_apis;x86_64" --device "pixel_5"
-    - $ANDROID_HOME/emulator/emulator -avd test_avd -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -accel off -partition-size 4096 &
+    - echo "disk.dataPartition.size=3072M" >> $ANDROID_AVD_HOME/test_avd.avd/config.ini
+    - $ANDROID_HOME/emulator/emulator -avd test_avd -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -accel off &
     - adb wait-for-device
     - |
       until adb shell getprop sys.boot_completed | grep -m 1 "1"; do
