@@ -64,7 +64,8 @@ export const config = {
         'appium:noReset': false,
         'appium:autoGrantPermissions': true,
         'appium:uiautomator2ServerInstallTimeout': 120000,
-        'appium:adbExecTimeout': 120000, 
+        'appium:adbExecTimeout': 120000,
+        'appium:androidInstallTimeout': 180000,
     }],
 
     //

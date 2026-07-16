@@ -53,9 +53,9 @@ test_android:
         echo "Aguardando emulador finalizar o boot..."
         sleep 5
       done
+    - echo "Boot detectado, aguardando serviços internos estabilizarem..."
+    - sleep 20
     - echo "Emulador pronto"
-    - npm install -g appium
-    - appium driver install uiautomator2
   script:
     - npm run wdio
   artifacts:
