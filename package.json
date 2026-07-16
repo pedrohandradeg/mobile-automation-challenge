@@ -14,6 +14,7 @@
   "scripts": {
     "wdio": "wdio run ./wdio.conf.js",
     "test:ios": "wdio run ./wdio.ios.conf.js",
+    "test:android:bs": "wdio run ./wdio.android.bs.conf.js",
     "allure:generate": "allure generate reports/allure-results --clean -o reports/allure-report",
     "allure:open": "allure open reports/allure-report"
   }
