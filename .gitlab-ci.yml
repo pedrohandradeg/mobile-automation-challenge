@@ -52,6 +52,9 @@ generate_allure_report:
   stage: report
   image: node:20-bullseye
   needs: ["install_dependencies", "test_android_browserstack"]
+  before_script:
+    - apt-get update -qq
+    - apt-get install -y -qq default-jre-headless > /dev/null
   script:
     - npm run allure:generate
   artifacts:
