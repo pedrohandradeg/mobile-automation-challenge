@@ -37,21 +37,12 @@ test_android:
     - unzip -q cmdline-tools.zip -d $ANDROID_HOME/cmdline-tools
     - rm -f cmdline-tools.zip
     - apt-get clean
+    - rm -rf /var/lib/apt/lists/*
     - mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
     - export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
     - yes | sdkmanager --licenses > /dev/null || true
-    - sdkmanager --install "platform-tools" "platforms;android-33" "system-images;android-33;google_apis;x86_64" "emulator" > /dev/null
+    - sdkmanager --install "platform-tools" "system-images;android-33;google_apis;x86_64" "emulator" > /dev/null
     - echo "no" | avdmanager create avd -n test_avd -k "system-images;android-33;google_apis;x86_64" --device "pixel_5"
-    - |
-      CONFIG_INI=$(find / -name "config.ini" -path "*test_avd.avd*" 2>/dev/null | head -1)
-      echo "Config encontrado em: $CONFIG_INI"
-      if grep -q "^disk.dataPartition.size=" "$CONFIG_INI"; then
-        sed -i "s/^disk.dataPartition.size=.*/disk.dataPartition.size=3072M/" "$CONFIG_INI"
-      else
-        echo "disk.dataPartition.size=3072M" >> "$CONFIG_INI"
-      fi
-      echo "--- Conteudo final do config.ini (dataPartition) ---"
-      grep dataPartition "$CONFIG_INI"
     - $ANDROID_HOME/emulator/emulator -avd test_avd -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -accel off &
     - adb wait-for-device
     - |
