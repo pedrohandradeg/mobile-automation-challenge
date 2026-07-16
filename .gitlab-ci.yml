@@ -43,6 +43,9 @@ test_android:
     - yes | sdkmanager --licenses > /dev/null || true
     - sdkmanager --install "platform-tools" "system-images;android-34;google_apis;x86_64" "emulator" > /dev/null
     - echo "no" | avdmanager create avd -n test_avd -k "system-images;android-34;google_apis;x86_64" --device "pixel_5"
+    - mkdir -p apps
+    - wget -q https://github.com/webdriverio/native-demo-app/releases/download/v2.2.0/android.wdio.native.app.v2.2.0.apk -O apps/android.apk
+    - ls -la apps/
     - $ANDROID_HOME/emulator/emulator -avd test_avd -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -accel off &
     - adb wait-for-device
     - |
