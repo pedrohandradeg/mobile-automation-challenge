@@ -41,8 +41,8 @@ test_android:
     - mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
     - export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
     - yes | sdkmanager --licenses > /dev/null || true
-    - sdkmanager --install "platform-tools" "system-images;android-33;google_apis;x86_64" "emulator" > /dev/null
-    - echo "no" | avdmanager create avd -n test_avd -k "system-images;android-33;google_apis;x86_64" --device "pixel_5"
+    - sdkmanager --install "platform-tools" "system-images;android-34;google_apis;x86_64" "emulator" > /dev/null
+    - echo "no" | avdmanager create avd -n test_avd -k "system-images;android-34;google_apis;x86_64" --device "pixel_5"
     - $ANDROID_HOME/emulator/emulator -avd test_avd -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -accel off &
     - adb wait-for-device
     - |
